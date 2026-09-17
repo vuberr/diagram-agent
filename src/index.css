@@ -124,3 +124,55 @@
     cursor: pointer;
   }
 }
+
+/* ============================================================
+   Landing page: animated hero diagram theme
+   ============================================================ */
+.demo-canvas {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.demo-edge {
+  stroke: var(--muted-foreground);
+  stroke-width: 1.5;
+  opacity: 0.55;
+}
+.demo-edge-arrow {
+  fill: var(--muted-foreground);
+  opacity: 0.7;
+}
+
+.demo-node {
+  backdrop-filter: blur(4px);
+}
+.demo-node-actor {
+  background: color-mix(in oklch, var(--chart-1) 18%, var(--card));
+  border-color: color-mix(in oklch, var(--chart-1) 45%, var(--border));
+}
+.demo-node-network {
+  background: color-mix(in oklch, var(--chart-2) 18%, var(--card));
+  border-color: color-mix(in oklch, var(--chart-2) 45%, var(--border));
+}
+.demo-node-client {
+  background: color-mix(in oklch, var(--chart-4) 18%, var(--card));
+  border-color: color-mix(in oklch, var(--chart-4) 45%, var(--border));
+}
+.demo-node-server {
+  background: color-mix(in oklch, var(--chart-2) 18%, var(--card));
+  border-color: color-mix(in oklch, var(--chart-2) 45%, var(--border));
+}
+.demo-node-db {
+  background: color-mix(in oklch, var(--chart-5) 18%, var(--card));
+  border-color: color-mix(in oklch, var(--chart-5) 45%, var(--border));
+}
+
+@keyframes demo-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.demo-node {
+  animation: demo-pulse 4s ease-in-out infinite;
+}
