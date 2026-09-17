@@ -33,7 +33,14 @@ export const generateGraph = action({
     });
 
     if (!result.success || !result.data) {
-      throw new Error(result.error || "AI generation failed.");
+      const detail = result.error || "AI generation failed.";
+      if (/unauthorized|invalid token|401/i.test(detail)) {
+        throw new Error(
+          "AI gateway rejected the integration key (401 Unauthorized). " +
+            "Ask the project owner to refresh VLY_INTEGRATION_KEY in the Keys/API keys tab.",
+        );
+      }
+      throw new Error(detail);
     }
     const content = result.data.choices?.[0]?.message?.content;
     if (!content) throw new Error("AI returned an empty response.");
@@ -69,7 +76,14 @@ export const refineGraph = action({
     });
 
     if (!result.success || !result.data) {
-      throw new Error(result.error || "AI refinement failed.");
+      const detail = result.error || "AI refinement failed.";
+      if (/unauthorized|invalid token|401/i.test(detail)) {
+        throw new Error(
+          "AI gateway rejected the integration key (401 Unauthorized). " +
+            "Ask the project owner to refresh VLY_INTEGRATION_KEY in the Keys/API keys tab.",
+        );
+      }
+      throw new Error(detail);
     }
     const content = result.data.choices?.[0]?.message?.content;
     if (!content) throw new Error("AI returned an empty response.");
